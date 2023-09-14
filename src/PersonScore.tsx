@@ -23,7 +23,7 @@ export function PersonScore() {
       </h3>
       <button onClick={() => setScore(score + 1)}>Add</button>
       <button onClick={() => setScore(score - 1)}>Subtract</button>
-      <button>Reset</button>
+      <button onClick={() => setScore(0)}>Reset</button>
     </div>
   );
 }
