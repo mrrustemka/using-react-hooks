@@ -21,7 +21,7 @@ export function PersonScore() {
       <h3>
         {name}, {score}
       </h3>
-      <button>Add</button>
+      <button onClick={() => setScore(score + 1)}>Add</button>
       <button>Subtract</button>
       <button>Reset</button>
     </div>
