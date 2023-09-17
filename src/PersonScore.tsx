@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
-import { useEffect, useReducer, useRef, useMemo } from "react";
+import { useEffect, useReducer, useRef, useMemo, useCallback } from "react";
 import { getPerson } from "./getPerson";
+import { Reset } from "./Reset";
 
 function sillyExpensiveFunction() {
   console.log("Executing silly function");
@@ -48,10 +49,6 @@ function reducer(state: State, action: Action): State {
 }
 
 export function PersonScore() {
-  // const [name, setName] = useState<string | undefined>();
-  // const [score, setScore] = useState(0);
-  // const [loading, setLoading] = useState(true);
-
   const [{ name, score, loading }, dispatch] = useReducer(reducer, {
     name: undefined,
     score: 0,
@@ -74,6 +71,8 @@ export function PersonScore() {
     }
   }, [loading]);
 
+  const handleReset = useCallback(() => dispatch({ type: "reset" }), []);
+
   if (loading) {
     return <div>Loading ...</div>;
   }
@@ -90,7 +89,7 @@ export function PersonScore() {
         Add
       </button>
       <button onClick={() => dispatch({ type: "decrement" })}>Subtract</button>
-      <button onClick={() => dispatch({ type: "reset" })}>Reset</button>
+      <Reset onClick={handleReset} />
     </div>
   );
 }
